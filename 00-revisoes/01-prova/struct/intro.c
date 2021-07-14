@@ -14,6 +14,7 @@ int main() {
     now.s = 12;
 
     printf("%i:%i:%i", now.h, now.min, now.s);
+    // exit: 10:46:12
 
     return 0;
 }

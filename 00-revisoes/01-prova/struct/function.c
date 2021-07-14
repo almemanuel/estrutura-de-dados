@@ -11,6 +11,7 @@ typedef struct horario {
 // a declaracao da funcao e dos parametros ocorre de forma analoga aos tipos primitivos
 time newTime(time t);
 
+
 int main() {
     time now;
     now.h = 10;
@@ -18,8 +19,10 @@ int main() {
     now.s = 12;
 
     time after = newTime(now);
+    // exit 10:46:12
 
     printf("%.2i:%.2i:%.2i", after.h, after.min, after.s);
+    // exit 02:30:00
 
     return 0;
 }
