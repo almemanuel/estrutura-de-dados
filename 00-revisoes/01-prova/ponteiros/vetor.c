@@ -8,9 +8,17 @@ int main() {
     printf("%i\n", *ptr);
     // exit: 1
 
+    ptr++; // isto faz com que o ponteiro vá para o endereço de memória da frente. agora o ponteiro aponta para [1]
+    printf("%i\n", *ptr);
+    // exit: 2
+
+    *(ptr + 1) = 10; // este tipo de sintaxe também acessa o endereço de memória. neste caso, altera um indice ([2])
+    printf("%i\n", *(ptr + 1));
+    // exit: 10
+
     int *ptr2 = &vetor[2]; // isso força o ponteiro a apontar para um indice especifico do vetor. sua sintaxe seria a tradicional
     printf("%i\n", *ptr2);
-    // exit: 3
+    // exit: 10
 
     return 0;
 }
