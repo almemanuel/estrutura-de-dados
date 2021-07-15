@@ -15,9 +15,19 @@ int main() {
     later->min = 20;
     later->s = 20;
 
-     // os valores foram alterados através do ponteiro
-    printf("%.2i:%.2i:%.2i", now.h, now.min, now.s);
+    // os valores foram alterados através do ponteiro
+    printf("%.2i:%.2i:%.2i\n", now.h, now.min, now.s);
     // exit: 20:20:20
+
+    // é possível realizar operações normalmente
+    int sigma = 2;
+    time prev;
+    prev.h = sigma + later->s;
+    prev.min = now.h + later->min;
+    prev.s = later->min + later->s;
+
+    printf("%.2i:%.2i:%.2i\n", prev.h, prev.min, prev.s);
+    // exit: 22:40:40
 
     return 0;
 }
