@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<stdbool.h>
 
 typedef struct dataNode {
     int id;
@@ -35,19 +36,37 @@ void unshift(List *list, DataNode data) {
     list->size++;
 }
 
-/* imprime a lista  */
-void printList(List *list) {
-    Node *pointer = list->head; /* ponteiro que aponta para a cabeça da listas  */
 
-    if(pointer == NULL) {       /* quando o ponteiro nao aponta para endereço algum significa que a lista chegou está vazia */
-        printf("Lista vazia");
+/* retorna se a lista está vazia ou não */
+bool isEmpty(List *list) {
+    return (list->size == 0);
+}
+
+
+void printList(List *list) {
+    if(isEmpty(list)) {
+        printf("Lista vazia\n");
+        return;
     }
 
-    while(pointer != NULL) {    /* ou, nesse caso, a posição já nao pertence a lista    */
+    Node *pointer = list->head;
+
+    while(pointer != NULL) {
         printf("%i ", pointer->data.id);
         pointer = pointer->next;
     }
 }
+
+/* remove o primeiro item   */
+void shift(List *list) {
+    if(!isEmpty(list)) {
+        Node *pointer = list->head;
+        list->head = pointer->next;
+        free(pointer);
+        list->size--;
+    }
+}
+
 
 int main() {
     List* l = createList();
@@ -60,6 +79,9 @@ int main() {
     data.id = 9;
     unshift(l, data);
 
+    printList(l);
+
+    shift(l);
     printList(l);
 
     return 0;

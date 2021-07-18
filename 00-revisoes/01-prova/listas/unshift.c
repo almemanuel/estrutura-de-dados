@@ -26,7 +26,7 @@ List *createList() {
 }
 
 /* cria um nó no começo */
-void push(List *list, DataNode data) {
+void unshift(List *list, DataNode data) {
     Node *node = (Node *) malloc(sizeof(Node)); /* aloca o espaço para o nó */
 
     node->data = data;          /* cria um dado para o nó               */
@@ -41,10 +41,10 @@ int main() {
     DataNode data;
     data.id = 5;
 
-    push(l, data);
+    unshift(l, data);
 
     data.id = 9;
-    push(l, data);
+    unshift(l, data);
 
     printf("%i %i", l->head->data.id, l->head->next->data.id); /* imprime o primeiro e o segundo nó */
     /* exit: 9 5    */
