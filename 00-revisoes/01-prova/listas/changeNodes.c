@@ -148,7 +148,9 @@ void xchgNodes(List *list, Node *nodeA, Node *nodeB) {
         int indexA = indexOf(list, nodeA);
         int indexB = indexOf(list, nodeB);
 
-        if(indexA > indexB) {
+        if(indexA == -1 || indexB == -1) {
+            return;
+        } else if(indexA > indexB) {
             nodeA = nodeB;
             nodeB = atPos(list, indexA);
 
