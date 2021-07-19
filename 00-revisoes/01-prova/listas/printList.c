@@ -35,7 +35,7 @@ void unshift(List *list, DataNode data) {
     list->size++;
 }
 
-/* imprime a lista  */
+/* imprime a lista  */ /* foi atualizado */
 void printList(List *list) {
     Node *pointer = list->head; /* ponteiro que aponta para a cabeça da listas  */
 
@@ -60,6 +60,11 @@ int main() {
     data.id = 9;
     unshift(l, data);
 
+    data.id = 10;
+    unshift(l, data);
+
+    data.id = 2;
+    unshift(l, data);
     printList(l);
 
     return 0;

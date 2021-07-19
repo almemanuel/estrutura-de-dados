@@ -46,8 +46,12 @@ int main() {
     data.id = 9;
     unshift(l, data);
 
-    printf("%i %i", l->head->data.id, l->head->next->data.id); /* imprime o primeiro e o segundo nó */
-    /* exit: 9 5    */
+    data.id = 10;
+    unshift(l, data);
+
+    data.id = 2;
+    unshift(l, data);
+    printList(l);
 
     return 0;
 }

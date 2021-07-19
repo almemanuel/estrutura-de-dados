@@ -54,6 +54,7 @@ void printList(List *list) {
         printf("%i ", pointer->data.id);
         pointer = pointer->next;
     }
+    printf("\n");
 }
 
 
@@ -79,13 +80,12 @@ Node *atPos(List *list, int index) {
         return node;
     }
 
-    printf("Indice Invalido");
+    printf("Indice Invalido\n");
 
     return NULL;
 }
 
 
-/* Busca um nó e devolve o Indice   */
 int indexOf(List *list, Node *node) {
     if(node != NULL) {
         Node *pointer = list->head;
@@ -105,7 +105,6 @@ int indexOf(List *list, Node *node) {
 }
 
 
-/* exclui um item de acordo com o Indice    */
 void erase(List *list, int index) {
     if(index == 0) {
         shift(list);
@@ -122,21 +121,44 @@ void erase(List *list, int index) {
 }
 
 
+/* inserir um nó em uma determinada posição */
+void insert(List *list, DataNode data, int index) {
+    if(index == 0) {                                        /****************************************************/
+        unshift(list, data);                                /* se for o primeiro, será adicionado no inicio     */
+    } else {                                                /*                                                  */
+        Node *current = atPos(list, index);                 /* nó do indice informado                           */
+                                                            /*                                                  */
+        if(current != NULL) {                               /*                                                  */
+            Node *previous = atPos(list, index - 1);        /* nó anterior                                      */
+            Node *newNode = (Node *) malloc(sizeof(Node));  /* espaço alocado para o novo nó                    */
+            newNode->data = data;                           /* novo nó recebe o dado informado                  */
+                                                            /*  o novo nó é inserido entre o anterior e o atual */
+            previous->next = newNode;                       /* o próximo nó relativo ao anterior é o novo nó    */
+            newNode->next = current;                        /* o próximo nó do novo nó é o nó atual             */
+            list->size++;                                   /* consequentemente, a lista aumenta                */
+        }                                                   /****************************************************/
+    }
+}
+
+
 int main() {
     List* l = createList();
 
     DataNode data;
     data.id = 5;
-
     unshift(l, data);
 
     data.id = 9;
     unshift(l, data);
 
-    printList(l);
-    printf("\n");
+    data.id = 10;
+    unshift(l, data);
 
-    erase(l, 0);
+    data.id = 2;
+    unshift(l, data);
+
+    data.id = 11;
+    insert(l, data, 2);
     printList(l);
 
     return 0;

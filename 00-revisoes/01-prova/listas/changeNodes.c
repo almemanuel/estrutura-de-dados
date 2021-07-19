@@ -54,6 +54,7 @@ void printList(List *list) {
         printf("%i ", pointer->data.id);
         pointer = pointer->next;
     }
+    printf("\n");
 }
 
 
@@ -79,13 +80,12 @@ Node *atPos(List *list, int index) {
         return node;
     }
 
-    printf("Indice Invalido");
+    printf("Indice Invalido\n");
 
     return NULL;
 }
 
 
-/* Busca um nó e devolve o Indice   */
 int indexOf(List *list, Node *node) {
     if(node != NULL) {
         Node *pointer = list->head;
@@ -105,7 +105,6 @@ int indexOf(List *list, Node *node) {
 }
 
 
-/* exclui um item de acordo com o Indice    */
 void erase(List *list, int index) {
     if(index == 0) {
         shift(list);
@@ -122,21 +121,46 @@ void erase(List *list, int index) {
 }
 
 
+void insert(List *list, DataNode data, int index) {
+    if(index == 0) {
+        unshift(list, data);
+    } else {
+        Node *current = atPos(list, index);
+
+        if(current != NULL) {
+            Node *previous = atPos(list, index - 1);
+            Node *newNode = (Node *) malloc(sizeof(Node));
+            newNode->data = data;
+
+            previous->next = newNode;
+            newNode->next = current;
+            list->size++;
+        }
+    }
+}
+
+
+/* inverte dois nós */
+void xchgNodes(List *list, Node *nodeA, Node *nodeB) {
+    
+}
+
 int main() {
     List* l = createList();
 
     DataNode data;
     data.id = 5;
-
     unshift(l, data);
 
     data.id = 9;
     unshift(l, data);
 
-    printList(l);
-    printf("\n");
+    data.id = 10;
+    unshift(l, data);
 
-    erase(l, 0);
+    data.id = 2;
+    unshift(l, data);
+
     printList(l);
 
     return 0;
