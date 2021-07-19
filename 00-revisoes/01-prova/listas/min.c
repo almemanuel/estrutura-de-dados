@@ -174,7 +174,8 @@ void xchgNodes(List *list, Node *nodeA, Node *nodeB) {
     }
 }
 
-/* retorna o menor nó da listas */
+/* retorna o menor nó da listas                     */
+/* ele irá obter o menor nó a partir do indice dado */
 Node *min(List *list, int index) {
     Node *pointer = atPos(list, index);
 
