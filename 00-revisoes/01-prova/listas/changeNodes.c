@@ -142,7 +142,35 @@ void insert(List *list, DataNode data, int index) {
 
 /* inverte dois nós */
 void xchgNodes(List *list, Node *nodeA, Node *nodeB) {
-    
+    if(nodeA == nodeB) {
+        return;
+    } else {
+        int indexA = indexOf(list, nodeA);
+        int indexB = indexOf(list, nodeB);
+
+        if(indexA > indexB) {
+            nodeA = nodeB;
+            nodeB = atPos(list, indexA);
+
+            indexA = indexB;
+            indexB = indexOf(list, nodeB);
+        }
+
+        Node *pb = atPos(list, indexB - 1);
+
+        if(nodeA == list->head) {
+            list->head = nodeB;
+        } else {
+            Node *pa = atPos(list, indexA - 1);
+            pa->next = nodeB;
+        }
+
+        pb->next = nodeA;
+
+        Node *pointer = nodeA->next;
+        nodeA->next = nodeB->next;
+        nodeB->next = pointer;
+    }
 }
 
 int main() {
@@ -160,7 +188,9 @@ int main() {
 
     data.id = 2;
     unshift(l, data);
+    printList(l);
 
+    xchgNodes(l, l->head->next, l->head->next->next);
     printList(l);
 
     return 0;
