@@ -7,7 +7,7 @@ string é uma cadeia de caracteres finalizada com o símbolo "\0"
 em C, um caracter possui 8 bits, e é um tipo primitivo
 inteiro também é um tipo primitivo, porém, varia o tamanho de acordo com a cpu
     embora isso possa trazer problemas, a motivação é a eficiência do programa
-    inteiros podem ser signed (-127 a 128) ou unsigned (0 a 255)
+    inteiros podem ser signed (-128 a 127) ou unsigned (0 a 255)
     em signed, o MSB possui o sinal, sendo que 1 indica negativo e 0 indica positivo
     Por exemplo, para executar a subtração 15-5, o computador fará o seguinte
     15 -> 0000 1111
