@@ -29,6 +29,10 @@ int main() {
     for(i = 0; i < total; i++) {
         mean += *(students + i);
     }
+
+    free(students);
+    students = NULL;
+
     mean = mean / total;
     printf("Class mean: %.2f", mean);
 
