@@ -33,5 +33,9 @@ int consulta_lista_mat(Lista *li, int mat, aluno *al);
 void imprime_lista(Lista *li);
 int ordem_lista(Lista *li);
 void copia_lista(Lista *nova, Lista *li);
+void copia_lista_sem_repeticoes(Lista *repeticao, Lista *sem_repeticao, Lista *li);
+void copia_invertida(Lista *invertida, Lista *li);
+void inverte_lista(Lista *li);
+void lista_mesclada_intercalada(Lista *mesclada, Lista *li1, Lista *li);
 
 #endif

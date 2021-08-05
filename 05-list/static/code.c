@@ -107,38 +107,87 @@ int main() {
         al.media = 9;
         insere_lista_inicio(L1, al);
         al.matricula = 12346;
-        strcpy(al.nome, "mirto");
+        strcpy(al.nome, "zezinho");
         al.media = 2.1;
         insere_lista_crescente(L1, al);
         al.matricula = 12345;
-        strcpy(al.nome, "ricardo");
-        al.media = 5.1;
-        insere_lista_final(L1, al);
-        al.matricula = 00001;
-        strcpy(al.nome, "maria");
-        al.media = 10;
-        insere_lista_inicio(L1, al);
-        al.matricula = 54321;
-        strcpy(al.nome, "dinho");
-        al.media = 0.1;
-        insere_lista_crescente(L1, al);
+        strcpy(al.nome, "joaozinho");
 
         imprime_lista(L1);
 
         /* parte 1 */
-        int ordem = ordem_lista(L1);
+        /*int ordem = ordem_lista(L1);
         if(ordem == 1) {
                 printf("\nordem crescente\n");
         } else if(ordem == -1) {
                 printf("\nordem crescente\n");
         } else {
                 printf("\nsem ordem definida\n");
-        }
+        }*/
 
         /* parte 2 */
-        Lista *L2 = cria_lista();
+        /*Lista *L2 = cria_lista();
         copia_lista(L2, L1);
         imprime_lista(L2);
+        libera_lista(L2); */
+
+        /* parte 3 */
+        /*Lista *L2 = cria_lista();
+        Lista *L3 = cria_lista();
+        copia_lista_sem_repeticoes(L3, L2, L1);
+        printf("\nLista original:\n");
+        imprime_lista(L1);
+        printf("\nLista sem itens repetidos:\n");
+        imprime_lista(L2);
+        printf("\nLista somente com os itens repetidos:\n");
+        imprime_lista(L3);
+        libera_lista(L2);
+        libera_lista(L3);*/
+
+        /* parte 4 */
+        /*Lista *L2 = cria_lista();
+        copia_invertida(L2, L1);
+        printf("\nLista original: \n");
+        imprime_lista(L1);
+        printf("\nLista invertida:\n");
+        imprime_lista(L2);
+        libera_lista(L2);*/
+
+        /* parte 5 */
+        /* inverte_lista(L1);
+        imprime_lista(L1); */
+
+        /* parte 6 */
+        Lista *L2 = cria_lista();
+        al.media = 5.1;
+        insere_lista_final(L2, al);
+        al.matricula = 00001;
+        strcpy(al.nome, "maria");
+        al.media = 10;
+        insere_lista_inicio(L2, al);
+        al.matricula = 54321;
+        strcpy(al.nome, "clovis");
+        al.media = 0.1;
+        insere_lista_crescente(L2, al);
+        al.matricula = 10203;
+        strcpy(al.nome, "carlinho");
+        al.media = 5;
+        insere_lista_final(L2, al);
+        al.matricula = 98765;
+        strcpy(al.nome, "edinho");
+        al.media = 3.2;
+        insere_lista_inicio(L2, al);
+
+        Lista *L3 = cria_lista();
+        lista_mesclada_intercalada(L3, L2, L1);
+        printf("\nPrimeira Lista: ");
+        imprime_lista(L1);
+        printf("\nSegunda Lista: ");
+        imprime_lista(L2);
+        printf("\nLista Mesclada: ");
+        imprime_lista(L3);
+        libera_lista(L2);
+        libera_lista(L3);
 
         return 0;
 }

@@ -189,7 +189,58 @@ int ordem_lista(Lista *li) {
 
 
 void copia_lista(Lista *nova, Lista *li) {
+    if(lista_vazia(li)) return;
+
     int i;
     for(i = 0; i < li->qtd; i++)
         insere_lista_final(nova, li->dados[i]);
+}
+
+
+void copia_lista_sem_repeticoes(Lista *repeticao, Lista *sem_repeticao, Lista *li) {
+    if(lista_vazia(li)) return;
+
+    int i, j;
+    for(i = 0; i < li->qtd; i++) {
+        j = 0;
+        while(j < i && li->dados[i].matricula != li->dados[j].matricula)
+            j++;
+        if(j == i) insere_lista_final(sem_repeticao, li->dados[i]);
+        else insere_lista_final(repeticao, li->dados[i]);
+    }
+}
+
+
+void copia_invertida(Lista *invertida, Lista *li) {
+    if(lista_vazia(li)) return;
+
+    int i;
+    for(i = 0; i < li->qtd; i++)
+        insere_lista_inicio(invertida, li->dados[i]);
+}
+
+
+void inverte_lista(Lista *li) {
+    if(lista_vazia(li)) return;
+
+    aluno aux;
+    int i;
+    int j = li->qtd - 1;
+    for(i = 0; i < (li->qtd - 1) / 2; i++) {
+        aux = li->dados[j];
+        li->dados[j] = li->dados[i];
+        li->dados[i] = aux;
+        j--;
+    }
+}
+
+void lista_mesclada_intercalada(Lista *mesclada, Lista *li1, Lista *li) {
+    int aux;
+    if(li->qtd > li1->qtd) aux = li->qtd;
+    else aux = li1->qtd;
+    int i;
+    for(i = 0; i < aux; i++) {
+        if(li->qtd > i)insere_lista_final(mesclada, li->dados[i]);
+        if(li1->qtd > i)insere_lista_final(mesclada, li1->dados[i]);
+    }
 }
