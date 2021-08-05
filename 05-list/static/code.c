@@ -157,7 +157,7 @@ int main() {
         /* inverte_lista(L1);
         imprime_lista(L1); */
 
-        /* parte 6 */
+        /* nova lista */
         Lista *L2 = cria_lista();
         al.media = 5.1;
         insere_lista_final(L2, al);
@@ -178,7 +178,8 @@ int main() {
         al.media = 3.2;
         insere_lista_inicio(L2, al);
 
-        Lista *L3 = cria_lista();
+        /* parte 6 */
+        /*Lista *L3 = cria_lista();
         lista_mesclada_intercalada(L3, L2, L1);
         printf("\nPrimeira Lista: ");
         imprime_lista(L1);
@@ -187,7 +188,7 @@ int main() {
         printf("\nLista Mesclada: ");
         imprime_lista(L3);
         libera_lista(L2);
-        libera_lista(L3);
+        libera_lista(L3);*/
 
         return 0;
 }
