@@ -92,3 +92,104 @@ int insere_lista_crescente(Lista *li, aluno al) {
     li->qtd++; /* incremento do tamanho da lista */
     return 1;
 }
+
+
+int remove_lista_final(Lista *li) {
+    if(li == NULL)
+        return 0;
+    if(li->qtd == 0)
+        return 0;
+    li->qtd--; /* tornará a posição final vaga */
+    return 1;
+}
+
+
+int remove_lista_inicio(Lista *li) {
+    if(li == NULL)
+        return 0;
+    if(li->qtd == 0)
+        return 0;
+    int k;
+    /* tornará o elemento atual no próximo elemento */
+    for(k = 0; k < li->qtd - 1; k++)
+        li->dados[k] = li->dados[k + 1];
+    li->qtd--; /* decremento na quantidade de itens da lista */
+    return 1;
+}
+
+
+int remove_lista(Lista *li, int mat) {
+    if(li == NULL) return 0;
+    if(li->qtd == 0) return 0;
+    int k, i = 0;
+    /* busca o elemento na lista */
+    while(i < li->qtd && li->dados[i].matricula != mat)
+        i++;
+
+    /* i = qtd significa que o elemento não foi encontrado */
+    if(i == li->qtd)
+        return 0;
+
+    /* desloca os elementos a frente do indice correspondente uma posição para trás */
+    for(k = i; k < li->qtd - 1; k++)
+        li->dados[k] = li->dados[k + 1];
+    li->qtd--;
+    return 1;
+}
+
+
+/* utiliza um ponteiro que irá receber os dados da posição */
+int consulta_lista_pos(Lista *li, int pos, aluno *al) {
+    if(li == NULL || pos <= 0 || pos > li->qtd)
+        return 0;
+    *al = li->dados[pos - 1];
+    return 1;
+}
+
+
+int consulta_lista_mat(Lista *li, int mat, aluno *al) {
+    if(li == NULL)
+        return 0;
+    int k, i = 0;
+    while(i < li->qtd && li->dados[i].matricula != mat)
+        i++;
+    if(i == li->qtd)
+        return 0;
+
+    *al = li->dados[i];
+    return 1;
+}
+
+
+void imprime_lista(Lista *li){
+    if(!lista_vazia(li)) {
+        int i;
+        for(i = 0; i < li->qtd; i++)
+            printf("%i ", li->dados[i].matricula);
+    }
+}
+
+
+int ordem_lista(Lista *li) {
+    if(lista_vazia(li)) return 0;
+
+    int i = 0;
+
+    while(i < li->qtd - 1 && li->dados[i].matricula < li->dados[i + 1].matricula)
+        i++;
+    if(i == li->qtd - 1) return 1; /* crescente */
+
+    i = 0;
+    while(i < li->qtd - 1 && li->dados[i].matricula > li->dados[i + 1].matricula)
+        i++;
+    if(i == li->qtd - 1) return -1; /* decrescente */
+
+    return 0;
+}
+
+
+void copia_lista(Lista *nova, Lista *li) {
+    int i;
+    for(i = 0; i < li->qtd; i++)
+        insere_lista_final(nova, li->dados[i]);
+}
