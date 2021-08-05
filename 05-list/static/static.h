@@ -27,7 +27,7 @@ int insere_lista_inicio(Lista *li, aluno al);
 int insere_lista_crescente(Lista *li, aluno al);
 int remove_lista_final(Lista *li);
 int remove_lista_inicio(Lista *li);
-int remove_lista(Lista *li, int mat);
+int remove_matricula(Lista *li, int mat);
 int consulta_lista_pos(Lista *li, int pos, aluno *al);
 int consulta_lista_mat(Lista *li, int mat, aluno *al);
 void imprime_lista(Lista *li);
@@ -37,5 +37,9 @@ void copia_lista_sem_repeticoes(Lista *repeticao, Lista *sem_repeticao, Lista *l
 void copia_invertida(Lista *invertida, Lista *li);
 void inverte_lista(Lista *li);
 void lista_mesclada_intercalada(Lista *mesclada, Lista *li1, Lista *li);
+void ordena_lista(Lista *li);
+float media_global(Lista *li);
+int total_abaixo(Lista *li);
+int total_acima(Lista *li);
 
 #endif

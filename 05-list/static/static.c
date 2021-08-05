@@ -118,22 +118,20 @@ int remove_lista_inicio(Lista *li) {
 }
 
 
-int remove_lista(Lista *li, int mat) {
+int remove_matricula(Lista *li, int mat) {
     if(li == NULL) return 0;
     if(li->qtd == 0) return 0;
     int k, i = 0;
-    /* busca o elemento na lista */
-    while(i < li->qtd && li->dados[i].matricula != mat)
-        i++;
 
-    /* i = qtd significa que o elemento não foi encontrado */
-    if(i == li->qtd)
-        return 0;
-
-    /* desloca os elementos a frente do indice correspondente uma posição para trás */
-    for(k = i; k < li->qtd - 1; k++)
-        li->dados[k] = li->dados[k + 1];
-    li->qtd--;
+    for(i = 0; i < li->qtd; i++) {
+        if(li->dados[i].matricula == mat) {
+            /* desloca os elementos a frente do indice correspondente uma posição para trás */
+            for(k = i; k < li->qtd; k++) {
+                li->dados[k] = li->dados[k + 1];
+                li->qtd--;
+            }
+        }
+    }
     return 1;
 }
 
@@ -243,4 +241,58 @@ void lista_mesclada_intercalada(Lista *mesclada, Lista *li1, Lista *li) {
         if(li->qtd > i)insere_lista_final(mesclada, li->dados[i]);
         if(li1->qtd > i)insere_lista_final(mesclada, li1->dados[i]);
     }
+}
+
+
+void ordena_lista(Lista *li) {
+    if(lista_vazia(li)) return;
+    int j, i = 0;
+    aluno aux;
+
+    for(i = 0; i < li->qtd - 1; i++) {
+        for(j = 0; j < li->qtd - 1; j++) {
+            if(li->dados[j].matricula > li->dados[j + 1].matricula) {
+                aux = li->dados[j];
+                li->dados[j] = li->dados[j + 1];
+                li->dados[j + 1] = aux;
+            }
+        }
+    }
+}
+
+
+float media_global(Lista *li) {
+    if(lista_vazia(li)) return -1;
+
+    int i, soma = 0;
+    for(i = 0; i < li->qtd; i++) {
+        soma += li->dados[i].media;
+    }
+    return (float)soma / li->qtd;
+}
+
+
+int total_abaixo(Lista *li) {
+    if(lista_vazia(li)) return -1;
+
+    float media = media_global(li);
+
+    int i, soma = 0;
+    for(i = 0; i < li->qtd; i++) {
+        if(li->dados[i].media < media) soma++;
+    }
+    return soma;
+}
+
+
+int total_acima(Lista *li) {
+    if(lista_vazia(li)) return -1;
+
+    float media = media_global(li);
+
+    int i, soma = 0;
+    for(i = 0; i < li->qtd; i++) {
+        if(li->dados[i].media >= media) soma++;
+    }
+    return soma;
 }

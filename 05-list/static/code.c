@@ -94,10 +94,10 @@ fornecidos pelo usuário. Realizar a inserção de forma a manter a lista ordena
 alunos estão acima da média e quantos estão abaixo.
 */
 int main() {
-        Lista *L1 = cria_lista();
+        /*Lista *L1 = cria_lista();*/
 
         /* insercao */
-        aluno al;
+        /*aluno al;
         al.matricula = 12345;
         strcpy(al.nome, "joaozinho");
         al.media = 5.1;
@@ -110,10 +110,9 @@ int main() {
         strcpy(al.nome, "zezinho");
         al.media = 2.1;
         insere_lista_crescente(L1, al);
-        al.matricula = 12345;
-        strcpy(al.nome, "joaozinho");
 
         imprime_lista(L1);
+        printf("\n");*/
 
         /* parte 1 */
         /*int ordem = ordem_lista(L1);
@@ -158,7 +157,7 @@ int main() {
         imprime_lista(L1); */
 
         /* nova lista */
-        Lista *L2 = cria_lista();
+        /*Lista *L2 = cria_lista();
         al.media = 5.1;
         insere_lista_final(L2, al);
         al.matricula = 00001;
@@ -176,7 +175,7 @@ int main() {
         al.matricula = 98765;
         strcpy(al.nome, "edinho");
         al.media = 3.2;
-        insere_lista_inicio(L2, al);
+        insere_lista_inicio(L2, al);*/
 
         /* parte 6 */
         /*Lista *L3 = cria_lista();
@@ -189,6 +188,26 @@ int main() {
         imprime_lista(L3);
         libera_lista(L2);
         libera_lista(L3);*/
+
+        /* parte 7 */
+        /*remove_matricula(L1, 0);
+        imprime_lista(L1);*/
+
+        /* parte 8 */
+        /*ordena_lista(L1);
+        al.matricula = 32901;
+        strcpy(al.nome, "godofredo");
+        al.media = 0.5;
+        insere_lista_crescente(L1, al);
+        imprime_lista(L1);*/
+
+        /* parte 9 */
+        /*float med = media_global(L1);
+        int abaixo = total_abaixo(L1);
+        int acima = total_acima(L1);
+        printf("%.2f %i %i", med, abaixo, acima);*/
+
+        /*libera_lista(L1);*/
 
         return 0;
 }
