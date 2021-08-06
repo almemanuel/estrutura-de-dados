@@ -56,11 +56,10 @@ Alocação dinâmica
 - cresce e diminui conforme os elementos são adicionados ou removidos
 - acesso encadeado, pois cada elemento pode estar em uma área diferente da memória
 - para acessar um elemento, é preciso percorrer todos os seus antecessores
-    topo -> chave
-            prox -> chave
-            NÓ      prox -> chave
-                    NÓ      prox -> chave
-                            NÓ      prox -> NULL
-                                    NÓ
-
+        topo -> chave
+                prox -> chave
+                NÓ      prox -> chave
+                        NÓ      prox -> chave
+                                NÓ      prox -> NULL
+                                        NÓ
 */
