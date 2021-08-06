@@ -14,5 +14,7 @@ int tamanho_lista(Lista *cabeca);
 int insere_lista_inicio(Lista *cabeca, Dado dado);
 int insere_lista_final(Lista *cabeca, Dado dado);
 int insere_lista_ordenada(Lista *cabeca, Dado dado);
-
+int remove_lista_inicio(Lista *cabeca);
+int remove_lista_final(Lista *cabeca);
+int remove_no(Lista *cabeca, int chave);
 #endif

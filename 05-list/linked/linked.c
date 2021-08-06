@@ -89,7 +89,7 @@ int insere_lista_ordenada(Lista *cabeca, Dado dado) {
         return 1;
     } else {
         No *ant, *atual = *cabeca;
-        while(atual != NULL && atual->chave.valor < dados.valor) {
+        while(atual != NULL && atual->chave.valor < dado.valor) {
             ant = atual;
             atual = atual->prox;
         }
@@ -101,4 +101,51 @@ int insere_lista_ordenada(Lista *cabeca, Dado dado) {
             ant->prox = no;
         }
     }
+}
+
+
+int remove_lista_inicio(Lista *cabeca) {
+    if(lista_vazia(cabeca)) return 0;
+
+    No *no = *cabeca; /* no que armazena o inicio da lista */
+    *cabeca = no->prox; /* inicio da lista recebe o valor do segundo no */
+    free(no); /* remove o no, que armazena o antigo primeiro elemento */
+    no = NULL;
+    return 1;
+}
+
+
+int remove_lista_final(Lista *cabeca) {
+    if(lista_vazia(cabeca)) return 0;
+    No *ant, *no = *cabeca;
+    while(no->prox != NULL) {
+        ant = no; /* no anterior recebe o no */
+        no = no->prox; /* no recebe o valor do seu proximo */
+    }
+    if(no == *cabeca)
+        *cabeca = no->prox; /* siginifica que a lista continha só um elemento, que será removido nessa linha */
+    else
+        ant->prox = no->prox; /* caso contrário, o valor anterior ao no apontará para o proximo de nó */
+    free(no);
+    no = NULL;
+    return 1;
+}
+
+
+int remove_no(Lista *cabeca, int chave) {
+    if(cabeca == NULL) return 0;
+    No *ant, *no = *cabeca;
+    while(no != NULL && no->chave.dados != chave) {
+        ant = no; /* valor anterior recebe o no atual */
+        no = no->prox; /* no se tornara no seu proximo */
+    }
+    if(no == NULL) return 0; /* elemento não encontrado */
+
+    if(no == *cabeca) /* lista com apenas um elemento */
+        *cabeca = no->prox; /* isso levará a apontar NULL */
+    else
+        ant->prox = no->prox; /* o proximo do anterior se tornara no proximo do atual */
+    free(no);
+    no = NULL;
+    return 1;
 }

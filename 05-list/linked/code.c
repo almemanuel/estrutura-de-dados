@@ -31,10 +31,14 @@ Utilidade:
 - não há necessidade de garantir um espaço mínimo para a execução
 - inserção/remoção em lista ordenada são as operações mais frequentes
 
-Inserções:
+Inserções e remocões:
 - no início
 - no meio
 - no final
+
+Os tres tipos de remoção trabalham junstas, removendo um elemento específico da lista
+Não se pode remover de uma lista vazia
+Removendo um elemento de uma lista de um elemento, a lista torna-se vazia
 
 O nó-cabeça é o primeiro nó, usado para várias operações e verificações, e marca o inicio da lista
 */
