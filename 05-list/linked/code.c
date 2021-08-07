@@ -41,11 +41,16 @@ Não se pode remover de uma lista vazia
 Removendo um elemento de uma lista de um elemento, a lista torna-se vazia
 
 O nó-cabeça é o primeiro nó, usado para várias operações e verificações, e marca o inicio da lista
+
+Consultas podem ser feitas pelo conteúdo e pela posição
+Ambo dependem de busca na lista até encontrar o desejado
 */
 
 int main() {
         Lista *lista; // como Lista é ponteiro, *lista é ponteiro para ponteiro
         lista = cria_lista();
-        printf("%p %i", lista, lista_vazia(lista));
+        printf("%p %i\n", lista, lista_vazia(lista));
         libera_lista(lista);
+
+        return 0;
 }

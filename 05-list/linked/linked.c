@@ -101,6 +101,7 @@ int insere_lista_ordenada(Lista *cabeca, Dado dado) {
             ant->prox = no;
         }
     }
+    return 1;
 }
 
 
@@ -135,7 +136,7 @@ int remove_lista_final(Lista *cabeca) {
 int remove_no(Lista *cabeca, int chave) {
     if(cabeca == NULL) return 0;
     No *ant, *no = *cabeca;
-    while(no != NULL && no->chave.dados != chave) {
+    while(no != NULL && no->chave.valor != chave) {
         ant = no; /* valor anterior recebe o no atual */
         no = no->prox; /* no se tornara no seu proximo */
     }
@@ -148,4 +149,31 @@ int remove_no(Lista *cabeca, int chave) {
     free(no);
     no = NULL;
     return 1;
+}
+
+
+int consulta_lista_pos(Lista *cabeca, int pos) {
+    if(cabeca == NULL || pos <= 0) return -1;
+    No *no = *cabeca; /* auxiliar apontando para o inicio */
+    int i = 1;
+    while(no != NULL && i < pos) {
+        no = no->prox; /* auxiliar torna-se no seu proximo valor */
+        i++;
+    }
+    if(no == NULL) /* não existe a posição */
+        return -1;
+    return no->chave.valor; /* retorna o valor */
+}
+
+
+int consulta_lista_chave(Lista *cabeca, int chave) {
+    if(cabeca == NULL) return 0;
+    No *no = *cabeca;
+    int i = 1;
+    while(no != NULL && no->chave.valor != chave)
+        no = no->prox; /* no torna-se no proximo */
+        i++;
+    if(no == NULL)
+        return 0; /* chave nao existe */
+    return i; /* retorna a posição da chave */
 }
