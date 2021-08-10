@@ -11,12 +11,12 @@ int lista_vazia(Lista *cabeca);
 Lista *cria_lista();
 void libera_lista(Lista *cabeca);
 int tamanho_lista(Lista *cabeca);
-int insere_lista_inicio(Lista *cabeca, Dado dado);
-int insere_lista_final(Lista *cabeca, Dado dado);
-int insere_lista_ordenada(Lista *cabeca, Dado dado);
-int remove_lista_inicio(Lista *cabeca);
-int remove_lista_final(Lista *cabeca);
-int remove_no(Lista *cabeca, int chave);
+void insere_lista_inicio(Lista *cabeca, Dado dado);
+void insere_lista_final(Lista *cabeca, Dado dado);
+void insere_lista_ordenada(Lista *cabeca, Dado dado);
+void remove_lista_inicio(Lista *cabeca);
+void remove_lista_final(Lista *cabeca);
+void remove_no(Lista *cabeca, int chave);
 int consulta_lista_pos(Lista *cabeca, int pos);
 int consulta_lista_chave(Lista *cabeca, int chave);
 

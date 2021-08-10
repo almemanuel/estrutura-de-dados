@@ -1,14 +1,68 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include "linked.h"
+#include<stdlib.h>
 
-struct No {
+/* DEFINIÇÃO DAS STRUCTS */
+typedef struct {
+    int valor;
+} Dado;
+
+
+typedef struct No {
     Dado chave;
     struct No *prox;
-};
-typedef struct No No;
+} No;
+
+typedef struct No *Lista;
 
 
+/* PROTÓTIPOS */
+int lista_vazia(Lista *cabeca);
+Lista *cria_lista();
+void libera_lista(Lista *cabeca);
+int tamanho_lista(Lista *cabeca);
+void insere_lista_inicio(Lista *cabeca, Dado dado);
+void insere_lista_final(Lista *cabeca, Dado dado);
+/*void insere_lista_ordenada(Lista *cabeca, Dado dado); SUBSTITUIR PELAS FUNCÕES ABAIXO */
+void insere_lista_pos(); // consertar
+int ordem_lista(); // fazer
+void ordena_crescente(); // fazer
+void ordena_decrescente(); // fazer
+void remove_lista_inicio(Lista *cabeca);
+void remove_lista_final(Lista *cabeca);
+void remove_chave(Lista *cabeca, int chave); /* checar */
+void remove_pos(); // fazer
+void exclui_repeticoes(); // fazer
+int consulta_lista_pos(Lista *cabeca, int pos);
+int consulta_lista_chave(Lista *cabeca, int chave);
+void imprime_lista(); // fazer
+Lista *copia_lista(); // fazer
+void inverte_lista(); // fazer
+
+
+/* PROGRAMA PRINCIPAL */
+int main() {
+    Lista *cabeca = cria_lista();
+    Dado teste;
+    teste.valor = 0;
+    insere_lista_inicio(cabeca, teste);
+    teste.valor = 1;
+    insere_lista_inicio(cabeca, teste);
+    teste.valor = 2;
+    insere_lista_inicio(cabeca, teste);
+    teste.valor = 3;
+    insere_lista_inicio(cabeca, teste);
+
+    teste.valor = 4;
+    insere_lista_pos(cabeca, teste, 1);
+    printf("%i", consulta_lista_pos(cabeca, 1));
+
+    libera_lista(cabeca);
+
+    return 0;
+}
+
+
+/* FUNÇÕES */
 int lista_vazia(Lista *cabeca) {
     if(cabeca == NULL || *cabeca == NULL) return 1; /* lista vazia */
     return 0; /* lista preenchida */
@@ -89,7 +143,7 @@ void insere_lista_final(Lista *cabeca, Dado dado) {
 }
 
 
-void insere_lista_ordenada(Lista *cabeca, Dado dado) {
+/*void insere_lista_ordenada(Lista *cabeca, Dado dado) {
     if(cabeca == NULL) {
         printf("nao eh possivel adicionar o no\n");
         return;
@@ -115,6 +169,39 @@ void insere_lista_ordenada(Lista *cabeca, Dado dado) {
         } else {
             no->prox = ant->prox;
             ant->prox = no;
+        }
+    }
+}*/
+
+
+void insere_lista_pos(Lista *cabeca, Dado dados, int pos) {
+    if(cabeca == NULL) {
+        printf("nao eh possivel adicionar o no\n");
+        return;
+    }
+    No *novo = (No *) malloc(sizeof(No));
+    if(novo == NULL) {
+        printf("nao eh possivel adicionar o no\n");
+        return;
+    }
+    novo->chave = dados;
+    if(lista_vazia(cabeca)) {
+        novo->prox = *cabeca;
+        return;
+    } else {
+        No *atual = *cabeca;
+        int i = 0;
+        while(atual != NULL) {
+            atual = atual->prox;
+            i++;
+        }
+        if(pos < i) {
+            No *ant = *cabeca;
+            for(i = 0; i < pos; i++) {
+                ant = ant->prox;
+            }
+            novo->prox = ant->prox;
+            ant->prox = novo;
         }
     }
 }
@@ -152,7 +239,7 @@ void remove_lista_final(Lista *cabeca) {
 }
 
 
-void remove_no(Lista *cabeca, int chave) {
+void remove_chave(Lista *cabeca, int chave) {
     if(cabeca == NULL) {
         printf("nao foi possivel remover o no\n");
         return;
@@ -162,7 +249,10 @@ void remove_no(Lista *cabeca, int chave) {
         ant = no; /* valor anterior recebe o no atual */
         no = no->prox; /* no se tornara no seu proximo */
     }
-    if(no == NULL) return 0; /* elemento não encontrado */
+    if(no == NULL) {
+        printf("nao foi possivel remover o no\n");
+        return; /* elemento não encontrado */
+    }
 
     if(no == *cabeca) /* lista com apenas um elemento */
         *cabeca = no->prox; /* isso levará a apontar NULL */
@@ -198,3 +288,4 @@ int consulta_lista_chave(Lista *cabeca, int chave) {
         return 0; /* chave nao existe */
     return i; /* retorna a posição da chave */
 }
+
