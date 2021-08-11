@@ -22,10 +22,9 @@ void libera_lista(Lista *cabeca);
 int tamanho_lista(Lista *cabeca);
 void insere_lista_inicio(Lista *cabeca, Dado dado);
 void insere_lista_final(Lista *cabeca, Dado dado);
-/*void insere_lista_ordenada(Lista *cabeca, Dado dado); SUBSTITUIR PELAS FUNCÕES ABAIXO */
-void insere_lista_pos(); // consertar
-int ordem_lista(); // fazer
-void ordena_crescente(); // fazer
+void insere_lista_pos(Lista *cabeca, Dado dados, int pos);
+int ordem_lista(Lista *cabeca);
+void ordena_crescente(Lista *cabeca); // fazer
 void ordena_decrescente(); // fazer
 void remove_lista_inicio(Lista *cabeca);
 void remove_lista_final(Lista *cabeca);
@@ -34,7 +33,7 @@ void remove_pos(); // fazer
 void exclui_repeticoes(); // fazer
 int consulta_lista_pos(Lista *cabeca, int pos);
 int consulta_lista_chave(Lista *cabeca, int chave);
-void imprime_lista(); // fazer
+void imprime_lista(Lista *cabeca); // fazer
 Lista *copia_lista(); // fazer
 void inverte_lista(); // fazer
 
@@ -51,10 +50,15 @@ int main() {
     insere_lista_inicio(cabeca, teste);
     teste.valor = 3;
     insere_lista_inicio(cabeca, teste);
+    imprime_lista(cabeca);
+    printf("%i\n", ordem_lista(cabeca));
 
     teste.valor = 4;
     insere_lista_pos(cabeca, teste, 1);
+    imprime_lista(cabeca);
     printf("%i", consulta_lista_pos(cabeca, 1));
+    printf("\n");
+    printf("%i\n", ordem_lista(cabeca));
 
     libera_lista(cabeca);
 
@@ -197,7 +201,7 @@ void insere_lista_pos(Lista *cabeca, Dado dados, int pos) {
         }
         if(pos < i) {
             No *ant = *cabeca;
-            for(i = 0; i < pos; i++) {
+            for(i = 0; i < pos - 1; i++) {
                 ant = ant->prox;
             }
             novo->prox = ant->prox;
@@ -267,7 +271,7 @@ int consulta_lista_pos(Lista *cabeca, int pos) {
     if(cabeca == NULL || pos <= 0) return -1;
     No *no = *cabeca; /* auxiliar apontando para o inicio */
     int i = 1;
-    while(no != NULL && i < pos) {
+    while(no != NULL && i <= pos) {
         no = no->prox; /* auxiliar torna-se no seu proximo valor */
         i++;
     }
@@ -287,5 +291,33 @@ int consulta_lista_chave(Lista *cabeca, int chave) {
     if(no == NULL)
         return 0; /* chave nao existe */
     return i; /* retorna a posição da chave */
+}
+
+
+void imprime_lista(Lista *cabeca) {
+    if(cabeca == NULL) return;
+
+    No *aux;
+    for(aux = *cabeca; aux != NULL; aux = aux->prox) {
+        printf("%i ", aux->chave.valor);
+    }
+    printf("\n");
+}
+
+
+int ordem_lista(Lista *cabeca) {
+    if(cabeca == NULL) return 0;
+    No *aux = *cabeca;
+
+    while(aux->prox != NULL && aux->chave.valor < aux->prox->chave.valor)
+        aux = aux->prox;
+    if(aux->prox == NULL) return 1; // crescente
+
+    aux = *cabeca;
+    while(aux->prox != NULL && aux->chave.valor > aux->prox->chave.valor)
+        aux = aux->prox;
+    if(aux->prox == NULL) return -1; // decrescente
+
+    return 0;
 }
 
