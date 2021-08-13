@@ -51,6 +51,9 @@ int lista_vazia(Lista *lista);
 void insere_lista_inicio(Lista *lista, Dados dados);
 void insere_lista_final(Lista *lista, Dados dados);
 void insere_lista_ordenada(Lista *lista, Dados dados);/*substituir por funções que ordenem*/
+void remove_lista_inicio(Lista *lista);
+void remove_lista_final(Lista *lista);
+
 /* PROGRAMA PRINCIPAL */
 
 /* FUNÇÕES E PROCEDIMENTOS */
@@ -159,3 +162,41 @@ void insere_lista_ordenada(Lista *lista, Dados dados) {
     ant->prox = no;
     no->prox = atual;
 }
+
+
+void remove_lista_inicio(Lista *lista) {
+    if(lista == NULL) return;
+    if(*lista == NULL) return;
+    if(*lista == *lista->prox) {
+        libera_lista(lista);
+        return;
+    }
+    No *atual = *lista;
+    while(atual->prox != *lista)
+        atual = atual->prox;
+    No *no = *lista;
+    atual->prox = no->prox;
+    *lista = no->prox;
+    free(no);
+    no = NULL;
+}
+
+
+void remove_lista_final(Lista *lista) {
+    if(lista == NULL) return;
+    if(*lista == NULL) return;
+    if(*lista == *lista->prox) {
+        libera_lista(lista);
+        return
+    }
+    No *ant, *no = *lista;
+    while(no->prox != *lista) {
+        ant = no;
+        no = no->prox;
+    }
+    ant->prox = no->prox;
+    free(no);
+    no = NULL;
+}
+
+
