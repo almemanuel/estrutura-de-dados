@@ -209,7 +209,7 @@ void remove_lista(Lista *lista, Dados dados) {
     if(no->prox != NULL)
         no->prox->ant = no->ant;
 
-    free(no)
+    free(no);
     no = NULL;
 }
 

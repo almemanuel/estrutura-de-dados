@@ -50,9 +50,12 @@ int tamanho_lista(Lista *lista);
 int lista_vazia(Lista *lista);
 void insere_lista_inicio(Lista *lista, Dados dados);
 void insere_lista_final(Lista *lista, Dados dados);
-void insere_lista_ordenada(Lista *lista, Dados dados);/*substituir por funções que ordenem*/
+void insere_lista_ordenada(Lista *lista, Dados dados); /*substituir por funções que ordenem*/
 void remove_lista_inicio(Lista *lista);
 void remove_lista_final(Lista *lista);
+void remove_lista(Lista *lista, Dados dados);
+int consulta_lista_pso(Lista *lista, int pos);
+int consulta_lista_chave(Lista *lista, int chave);
 
 /* PROGRAMA PRINCIPAL */
 
@@ -167,7 +170,7 @@ void insere_lista_ordenada(Lista *lista, Dados dados) {
 void remove_lista_inicio(Lista *lista) {
     if(lista == NULL) return;
     if(*lista == NULL) return;
-    if(*lista == *lista->prox) {
+    if(*lista == (*lista)->prox) {
         libera_lista(lista);
         return;
     }
@@ -185,9 +188,9 @@ void remove_lista_inicio(Lista *lista) {
 void remove_lista_final(Lista *lista) {
     if(lista == NULL) return;
     if(*lista == NULL) return;
-    if(*lista == *lista->prox) {
+    if(*lista == (*lista)->prox) {
         libera_lista(lista);
-        return
+        return;
     }
     No *ant, *no = *lista;
     while(no->prox != *lista) {
@@ -199,4 +202,66 @@ void remove_lista_final(Lista *lista) {
     no = NULL;
 }
 
+
+void remove_lista(Lista *lista, Dados dados) {
+    if(lista == NULL) return;
+    if(*lista == NULL) return;
+    No *no = *lista;
+    if(no->dados.chave == dados.chave) {
+        if(no == no->prox) {
+            remove_lista_inicio(lista);
+        } else {
+            No *ult = *lista;
+            while(ult->prox != *lista)
+                ult = ult->prox;
+            ult->prox = (*lista)->prox;
+            *lista = (*lista)->prox;
+            free(no);
+            no = NULL;
+        }
+        return;
+    }
+    No *ant = no;
+    no = no->prox;
+    while(no != *lista && no->dados.chave != dados.chave) {
+        ant = no;
+        no = no->prox;
+    }
+    if(no == *lista) return;
+    ant->prox = no->prox;
+    free(no);
+    no = NULL;
+}
+
+
+int consulta_lista_pos(Lista *lista, int pos) {
+    if(lista == NULL || *lista == NULL || pos <= 0) {
+        return -1;
+    }
+    No *no = *lista;
+    int i = 1;
+    while(no->prox != *lista && i < pos) {
+        no = no->prox;
+        i++;
+    }
+    if(i != pos) return -1;
+    else {
+        return no->dados.chave;
+    }
+}
+
+
+int consulta_lista_chave(Lista *lista, int chave) {
+    if(lista == NULL || *lista == NULL) return -1;
+    No *no = *lista;
+    int i = 0;
+    while(no->prox != *lista && no->dados.chave != chave) {
+        no = no->prox;
+        i++;
+    }
+    if(no->dados.chave != chave)
+        return -1;
+    else
+        return i;
+}
 

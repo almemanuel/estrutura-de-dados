@@ -1,7 +1,3 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<assert.h>
-
 /*
 Uma lista ligada corresponde a uma sequencia lógica de entradas (nós)
 Geralmente, o topo (primeiro elemento) e eventualmente o fim da lista sejam conhecidos
