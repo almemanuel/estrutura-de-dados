@@ -32,7 +32,7 @@ int main() {
     int pos, chave, opc;
 
     do {
-        printf("---------------MENU----------------\n");
+        printf("\n---------------MENU----------------\n");
         printf("\t1 - Inserir no inicio\n");
         printf("\t2 - Inserir numa posicao especifica\n");
         printf("\t3 - Remover primeira posicao\n");
@@ -147,33 +147,6 @@ void insere_lista_inicio(Lista *lista, Dados dados) {
 }
 
 
-/*void insere_lista_ordenada(Lista *lista, Dados dados) {
-    if(lista == NULL) return;
-    No *no = (No *) malloc(sizeof(No));
-    if(no == NULL)
-        return 0;
-    no->dados = dados;
-    if(*lista == NULL) insere_lista_inicio(lista, dados);
-    else if((*lista)->dados.chave > dados.chave) {
-        No *atual = *lista;
-        while(atual->prox != *lista) {
-            atual = atual->prox;
-            no->prox = *lista;
-            atual->prox = no;
-            *lista = no;
-            return;
-        }
-    }
-    No *ant = *lista, *atual = (*lista)->prox;
-    while(atual != *lista && atual->dados.chave < dados.chave) {
-        ant = atual;
-        atual = atual->prox;
-    }
-    ant->prox = no;
-    no->prox = atual;
-} */
-
-
 void insere_lista_pos(Lista *lista, Dados dados, int pos) {
     if(lista == NULL) {
         printf("nao eh possivel adicionar o no\n");
@@ -239,7 +212,8 @@ void remove_chave(Lista *lista, int chave) {
     No *no = *lista;
     if(no->dados.chave == chave) {
         if(no == no->prox) {
-            remove_lista_inicio(lista);
+            free(no);
+            *lista = NULL;
         } else {
             No *ult = *lista;
             while(ult->prox != *lista)
@@ -247,9 +221,9 @@ void remove_chave(Lista *lista, int chave) {
             ult->prox = (*lista)->prox;
             *lista = (*lista)->prox;
             free(no);
-            no = NULL;
+            no = *lista;
         }
-        return;
+        remove_chave(lista, chave);
     }
     No *ant = no;
     no = no->prox;
@@ -261,81 +235,34 @@ void remove_chave(Lista *lista, int chave) {
     ant->prox = no->prox;
     free(no);
     no = NULL;
+    remove_chave(lista, chave);
 }
 
-/*
-int consulta_lista_pos(Lista *lista, int pos) {
-    if(lista == NULL || *lista == NULL || pos <= 0) {
-        return -1;
-    }
-    No *no = *lista;
-    int i = 1;
-    while(no->prox != *lista && i < pos) {
-        no = no->prox;
-        i++;
-    }
-    if(i != pos) return -1;
-    else {
-        return no->dados.chave;
-    }
-}
-
-
-int consulta_lista_chave(Lista *lista, int chave) {
-    if(lista == NULL || *lista == NULL) return -1;
-    No *no = *lista;
-    int i = 0;
-    while(no->prox != *lista && no->dados.chave != chave) {
-        no = no->prox;
-        i++;
-    }
-    if(no->dados.chave != chave)
-        return -1;
-    else
-        return i;
-}
-*/
 
 void remove_pos(Lista *lista, int pos) {
-    if(lista == NULL || *lista == NULL || pos <= 0) {
+    if(lista == NULL) return;
+    if(*lista == NULL) return;
+    No *no = *lista;
+    if(pos < 0) {
+        printf("posicao impossivel\n");
         return;
     }
-    No *no = *lista;
-    int i = 1;
-    while(no->prox != *lista && i < pos) {
-        no = no->prox;
-        i++;
-    }
-    int chave;
-    if(i != pos) return;
-    else {
-        chave = no->dados.chave;
-    }
-
-    no = *lista;
-    if(no->dados.chave == chave) {
-        if(no == no->prox) {
-            remove_lista_inicio(lista);
-        } else {
-            No *ult = *lista;
-            int j = 1;
-            while(ult->prox != *lista && j != i)
-                ult = ult->prox;
-                j++;
-            ult->prox = (*lista)->prox;
-            *lista = (*lista)->prox;
-            free(no);
-            no = *lista;
-        }
+    if(pos == 0) {
+        remove_lista_inicio(lista);
         return;
     }
     No *ant = no;
     no = no->prox;
-    while(no != *lista && no->dados.chave != chave) {
+    int i = 0;
+    while(no != *lista && i != pos - 1) {
         ant = no;
         no = no->prox;
+        i++;
     }
-    if(no == *lista) return;
+    if(no == *lista) {
+        printf("no inexistente\n");
+        return;
+    }
     ant->prox = no->prox;
     free(no);
     no = NULL;
@@ -343,7 +270,7 @@ void remove_pos(Lista *lista, int pos) {
 
 void imprime_lista(Lista *lista) {
     if(lista_vazia(lista)) return;
-
+    if(*lista == NULL || lista == NULL) return;
     No *aux = *lista;
     do {
         printf("%i ", aux->dados.chave);
