@@ -24,6 +24,9 @@ typedef struct fila {
 /* PROTÓTIPOS */
 Fila *cria_fila();
 void libera_fila(Fila *fila);
+int tamanho_fila(Fila *fila);
+int fila_cheia(Fila *fila);
+int fila_vazia(Fila *fila);
 
 /* PROGRAMA PRINCIPAL */
 
@@ -41,4 +44,24 @@ Fila *cria_fila() {
 void libera_fila(Fila *fila) {
     free(fila);
     fila = NULL;
+}
+
+
+int tamanho_fila(Fila *fila) {
+    if(fila == NULL) return -1;
+    return fila->qtd;
+}
+
+
+int fila_cheia(Fila *fila) {
+    if(fila == NULL) return -1;
+    if(fila->qtd == MAX) return 1;
+    return 0;
+}
+
+
+int fila_vazia(Fila *fila) {
+    if(fila == NULL) return -1;
+    if(fila->qtd == 0) return 1;
+    return 0;
 }
