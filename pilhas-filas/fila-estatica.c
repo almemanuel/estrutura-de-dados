@@ -27,6 +27,9 @@ void libera_fila(Fila *fila);
 int tamanho_fila(Fila *fila);
 int fila_cheia(Fila *fila);
 int fila_vazia(Fila *fila);
+void insere_fila(Fila *fila, Dados dados);
+void remove_fila(Fila *fila);
+int consulta_fila(Fila *fila);
 
 /* PROGRAMA PRINCIPAL */
 
@@ -64,4 +67,27 @@ int fila_vazia(Fila *fila) {
     if(fila == NULL) return -1;
     if(fila->qtd == 0) return 1;
     return 0;
+}
+
+
+void insere_fila(Fila *fila, Dados dados) {
+    if(fila == NULL) return;
+    if(fila_cheia(fila)) return;
+    fila->dados[fila->final] = dados;
+    fila->final = (fila->final + 1) % MAX;
+    fila->qtd++;
+}
+
+
+void remove_fila(Fila *fila) {
+    if(fila == NULL || fila_vazia(fila)) return;
+    free(fila->inicio); /* autoria propria */
+    fila->inicio = (fila->inicio + 1) % MAX;
+    fila->qtd--;
+}
+
+
+/*Dados*/int consulta_fila(Fila *fila) {
+    if(fila == NULL) return -1;
+    return fila->inicio->dados.chave/*fila->dados[fila->inicio]*/;
 }
