@@ -29,9 +29,36 @@ int fila_cheia(Fila *fila);
 int fila_vazia(Fila *fila);
 void insere_fila(Fila *fila, Dados dados);
 void remove_fila(Fila *fila);
-int consulta_fila(Fila *fila);
+Dados consulta_fila(Fila *fila);
 
 /* PROGRAMA PRINCIPAL */
+int main() {
+    Fila *fila = cria_fila();
+    Dados teste;
+    teste = consulta_fila(fila);
+    printf("%i\n", teste.chave);
+    teste.chave = 1;
+    insere_fila(fila, teste);
+    printf("%i ", teste.chave);
+    teste.chave = 2;
+    insere_fila(fila, teste);
+    printf("%i ", teste.chave);
+    teste.chave = 3;
+    insere_fila(fila, teste);
+    printf("%i\n", teste.chave);
+    teste = consulta_fila(fila);
+    printf("%i ", teste.chave);
+    remove_fila(fila);
+    teste = consulta_fila(fila);
+    printf("%i ", teste.chave);
+    remove_fila(fila);
+    teste = consulta_fila(fila);
+    printf("%i\n", teste.chave);
+    remove_fila(fila);
+    printf("%i", tamanho_fila(fila));
+    libera_fila(fila);
+    return 0;
+}
 
 /* FUNÇÕES E PROCEDIMENTOS */
 Fila *cria_fila() {
@@ -81,13 +108,12 @@ void insere_fila(Fila *fila, Dados dados) {
 
 void remove_fila(Fila *fila) {
     if(fila == NULL || fila_vazia(fila)) return;
-    free(fila->inicio); /* autoria propria */
     fila->inicio = (fila->inicio + 1) % MAX;
     fila->qtd--;
 }
 
 
-/*Dados*/int consulta_fila(Fila *fila) {
-    if(fila == NULL) return -1;
-    return fila->inicio->dados.chave/*fila->dados[fila->inicio]*/;
+Dados consulta_fila(Fila *fila) {
+    if(fila == NULL) exit(1);
+    return fila->dados[fila->inicio];
 }
