@@ -1,0 +1,17 @@
+---
+Sequência de elementos do mesmo tipo que possuem estrutura interna abstraída
+Na pilha, um elemento fica sobre o outro e o acesso é feito pelo topo do pilha
+- inserções e exclusões ocorrem apenas no início
+---
+Aplicações:
+- Análise de uma expressão matemática
+- avaliação de expressão pós-fixa
+- converter uma expressão in-fixa para pós-fixa
+- converter uma número decima em binário
+---
+Operações:
+- criação
+- inserção, consulta e exclusão no inicio
+- destruição da pilha
+As operações dependem do tipo de alocação utilizada
+---
