@@ -46,3 +46,12 @@ Obs: ao testar em uma condicional, a gravacao sera executada
 fgets(string, tamanho, arquivo) le uma string de um arquivo, retornando NULL em caso de erro, caso contrario, retorna um ponteiro para o primeiro caractere da string
 A leitura é feita até o caractere \n ou tamanho - 1
 ---
+para dados mais complexos que char, é preferivel utilizar arquivos binarios
+---
+fwite(buffer, bytes, count, arquivo) escreve um bloco de bytes
+- buffer: ponteiro generio para os dados
+- bytes: tamanho, em byte, de cada unidade de dado a ser gravada
+- count: total de unidades de dados que devem ser gravadas
+- fp: ponteiro para o arquivo
+Retorna o total de unidades de dados gravadas com sucesso
+---

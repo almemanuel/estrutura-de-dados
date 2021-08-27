@@ -92,6 +92,7 @@ int main() {
     return 0;
 } */
 
+/* leitura de string
 int main() {
     char str[20];
     FILE *arq = fopen("arquivo.txt", "r");
@@ -107,4 +108,69 @@ int main() {
     }
     fclose(arq);
     return 0;
-}
+} */
+
+/* gravando bin
+int main() {
+    FILE *arq = fopen("arquivo.txt", "wb");
+    if(arq == NULL) {
+        printf("ERRO NA ABERTURA");
+        exit(1);
+    }
+    int total_gravado, v[5];
+    int i;
+    for(i = 0; i < 5; i++) {
+        v[i] = i + 1;
+    }
+    total_gravado = fwrite(v, sizeof(int), 5, arq);
+    if(total_gravado != 5) {
+        printf("erro na escrita");
+        exit(1);
+    }
+    fclose(arq);
+    return 0;
+}*/
+
+/* gravando diferentes tipos de dados em um bin
+int main() {
+    FILE *arq = fopen("dados.txt", "wb");
+    if(arq == NULL) {
+        printf("ERRO NA ABERTURA");
+        exit(1);
+    }
+
+    char str[20] = "Hello World!";
+    float x = 5;
+    int v[5];
+    int i;
+    for(i = 0; i < 5; i++) {
+        v[i] = i + 1;
+    }
+
+    fwrite(str, sizeof(char), 20, arq);
+    fwrite(&x, sizeof(float), 1, arq);
+    fwrite(v, sizeof(int), 5, arq);
+    fclose(arq);
+
+    return 0;
+}*/
+
+/* gravando struct
+int main() {
+    typedef struct {
+        char nome[30], endereco[30];
+        int idade;
+    } Cadastro;
+
+    FILE *arq = fopen("struct.txt", "wb");
+    if(arq == NULL) {
+        printf("ERRO NA ABERTURA");
+        exit(1);
+    }
+
+    Cadastro cad = {"John", "7th Avenue", 32};
+    fwrite(&cad, sizeof(Cadastro), 1, arq);
+    fclose(arq);
+
+    return 0;
+}*/
