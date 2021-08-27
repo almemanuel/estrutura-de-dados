@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<ctype.h>
 
 /* Exemplo escrita de caractere
 int main() {
@@ -40,4 +41,23 @@ int main() {
     }
     fclose(f);
     return 0;
-}/*
+}*/
+
+int main() {
+    FILE *f1 = fopen("exemplo1.txt", "r"), *f2 = fopen("resposta1.txt", "w");
+    if(f1 == NULL || f2 == NULL) {
+        printf("ERRO");
+        exit(1);
+    }
+
+    char c = fgetc(f1);
+    while(c != EOF) {
+        fputc(toupper(c), f2);
+        c = fgetc(f1);
+    }
+
+    fclose(f1);
+    fclose(f2);
+
+    return 0;
+}
