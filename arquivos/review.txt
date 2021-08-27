@@ -13,3 +13,22 @@ A linguagem C utiliza um tipo especial de ponteiro na biblioteca stdio, FILE, pa
 - Arquivo de Texto: gravados exatamente da forma como os dados serão exibidos, utilizando caracters da 8 bits da tabela ASCII. Para isso, ocorre uma conversão, que acaba gerando arquivos maiores e processamento lento.
 - Arquivo binário: gravados exatamente como estão organizados na memoria do computador
 ---
+Para abrir um arquivo, utiliza-se FILE *fopen("nome_arquivo.ext", "modo")
+Ex: FILE *f; f = fopen("arquivo.txt", "w");
+Se fopen nao conseguir abrir o arquivo, sera retornado NULL
+---
+Modos:
+- r: leitura em arquivo existente;
+- w: escrita de novo arquivo ou sobescrita em existente;
+- rb: leitura de binario existente;
+- wb: escrita de novo binario ou sobescrita em existente;
+- a: append;
+- ab: appen de binario.
+Existem outros modos
+---
+Sempre apos trabalhar com um arquivo é necessário fechá-lo, usando fclose(variable)
+---
+fputc(caracter, arquivo): escreve um caractere no arquivo
+Em caso de erro retorna EOF
+Em caso de sucesso, o proprio caractere
+---
