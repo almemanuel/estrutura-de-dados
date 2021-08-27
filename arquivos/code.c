@@ -20,6 +20,7 @@ int main() {
     return 0;
 } */
 
+/* Exemplo leitura de caractere
 int main() {
     FILE *f = fopen("arquivo.txt", "r");
     if(f == NULL) {
@@ -28,10 +29,15 @@ int main() {
     }
     char c;
     int i;
-    for(i = 1; i <= 10; i++) {
+    for(i = 1; c <= 10; i++) {
         c = fgetc(f);
         printf("%c", c);
     }
+    char d = fgetc(f);
+    while(d != EOF) {
+        printf("%c", d);
+        d = fgetc(f);
+    }
     fclose(f);
     return 0;
-}
+}/*

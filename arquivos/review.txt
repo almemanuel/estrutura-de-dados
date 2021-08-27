@@ -34,4 +34,5 @@ Em caso de sucesso, o proprio caractere
 ---
 fgetc(variavel_arquivo): le um caractere de um arquivo
 Retorna EOF (erro) ou o caractere lido
+Para ler todos os caracteres, usa-se a constante EOF como referencia para atingir o fim do arquivo
 ---
