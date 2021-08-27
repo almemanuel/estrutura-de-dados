@@ -91,3 +91,20 @@ int main() {
     fclose(f);
     return 0;
 } */
+
+int main() {
+    char str[20];
+    FILE *arq = fopen("arquivo.txt", "r");
+    if(arq == NULL) {
+        printf("ERRO NA ABERTURA");
+        exit(1);
+    }
+    char *result = fgets(str, 12, arq);
+    if(result == NULL) {
+        printf("erro na leitura");
+    } else {
+        printf("%s", str);
+    }
+    fclose(arq);
+    return 0;
+}

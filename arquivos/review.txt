@@ -40,5 +40,9 @@ EOF: End of File (fim do arquivo)
 Para nao ocorrer problemas em binarios, é utilizado a função feof(arquivo), que retorna 0 se ainda não estiver no final do arquivo
 ---
 fputs(string, arquivo) escreve uma string em um arquivo, retornando EOF em caso de erro
+A função não adicion \n ao fim da cadeia
 Obs: ao testar em uma condicional, a gravacao sera executada
+---
+fgets(string, tamanho, arquivo) le uma string de um arquivo, retornando NULL em caso de erro, caso contrario, retorna um ponteiro para o primeiro caractere da string
+A leitura é feita até o caractere \n ou tamanho - 1
 ---
