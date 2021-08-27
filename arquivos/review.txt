@@ -39,3 +39,6 @@ Para ler todos os caracteres, usa-se a constante EOF como referencia para atingi
 EOF: End of File (fim do arquivo)
 Para nao ocorrer problemas em binarios, é utilizado a função feof(arquivo), que retorna 0 se ainda não estiver no final do arquivo
 ---
+fputs(string, arquivo) escreve uma string em um arquivo, retornando EOF em caso de erro
+Obs: ao testar em uma condicional, a gravacao sera executada
+---

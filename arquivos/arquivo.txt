@@ -1,1 +1,1 @@
-My program at C
+My program in C

@@ -79,3 +79,15 @@ int main() {
     return 0;
 }*/
 
+/* gravando uma string
+int main() {
+    FILE *f = fopen("arquivo.txt", "w");
+    if(f == NULL) {
+        printf("ERRO NA ABERTURA");
+        exit(1);
+    }
+    char txt[20] = "My program in C";
+    if(fputs(txt, f) == EOF) printf("ERRO NA GRAVACAO");
+    fclose(f);
+    return 0;
+} */
