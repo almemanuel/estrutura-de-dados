@@ -1,0 +1,15 @@
+---
+Arquivo é uma coleção de bytes armazenados em um dispositivo de armazenamento secundário
+---
+Vantagens:
+- não volátil
+- permitem armazenar muita informação
+- acesso concorrente aos dados
+---
+A extensão não define o tipo do arquivo, mas sim a maneira como os dados estão roganizados e as operações usadas para processar esse arquivo
+---
+A linguagem C utiliza um tipo especial de ponteiro na biblioteca stdio, FILE, para trabalhar com arquivos
+É possivel trabalhar com arquivos de texto e arquivos binarios
+- Arquivo de Texto: gravados exatamente da forma como os dados serão exibidos, utilizando caracters da 8 bits da tabela ASCII. Para isso, ocorre uma conversão, que acaba gerando arquivos maiores e processamento lento.
+- Arquivo binário: gravados exatamente como estão organizados na memoria do computador
+---
