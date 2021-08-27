@@ -32,3 +32,6 @@ fputc(caracter, arquivo): escreve um caractere no arquivo
 Em caso de erro retorna EOF
 Em caso de sucesso, o proprio caractere
 ---
+fgetc(variavel_arquivo): le um caractere de um arquivo
+Retorna EOF (erro) ou o caractere lido
+---
