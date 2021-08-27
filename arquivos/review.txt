@@ -36,3 +36,6 @@ fgetc(variavel_arquivo): le um caractere de um arquivo
 Retorna EOF (erro) ou o caractere lido
 Para ler todos os caracteres, usa-se a constante EOF como referencia para atingir o fim do arquivo
 ---
+EOF: End of File (fim do arquivo)
+Para nao ocorrer problemas em binarios, é utilizado a função feof(arquivo), que retorna 0 se ainda não estiver no final do arquivo
+---

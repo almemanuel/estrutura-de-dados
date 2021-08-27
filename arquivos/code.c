@@ -43,6 +43,7 @@ int main() {
     return 0;
 }*/
 
+/* Exemplo 1
 int main() {
     FILE *f1 = fopen("exemplo1.txt", "r"), *f2 = fopen("resposta1.txt", "w");
     if(f1 == NULL || f2 == NULL) {
@@ -60,4 +61,21 @@ int main() {
     fclose(f2);
 
     return 0;
-}
+} */
+
+/* utilizando feof() para verificar se chegou ao fim do arquivo
+int main() {
+    FILE *f = fopen("arquivo.txt", "r");
+    if(f == NULL) {
+        printf("ERRO NA ABERTURA");
+        exit(1);
+    }
+    char c = fgetc(f);
+    while(!feof(f)) {
+        printf("%c", c);
+        c = fgetc(f);
+    }
+    fclose(f);
+    return 0;
+}*/
+
