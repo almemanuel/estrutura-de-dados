@@ -62,3 +62,19 @@ fread(buffer, bytes, count, arquivo) le um bloco de bytes
 - arquivo: ponteiro para o arquivo
 Retorna o total de unidades de dados lidas com sucesso
 ---
+fprintf(arquivo, "saida", variaveis) permite escrever uma lista formatada de variaveis do mesmo modo que printf("saida", variaveis), porem, em vez de imprimir na tela, a formatacao é enviada para um arquivo
+---
+fscanf(arquivo, "formatacao", end_variaveis) permite ler uma lista formatada de dados em um arquivo, semelhante ao scanf("formatacao", end_variaveis)
+---
+fseek(arq, numbytes, origem) permite leitura e escrita randomica em um arquivo
+melhor aplicado em binarios
+- numbytes: tamanho do passo a partir da origem, em bytes
+- origem: ponto a partir do qual o passo sera feito
+Se falhar, retorna diferente de 0
+Sobre a origem:
+- SEEK_SET = 0 -> inicio do arquivo
+- SEEK_CUR = 1 -> ponto atual no arquivo
+- SEEK_END = 2 -> fim do arquivo
+---
+rewind(arq) retorna para o inicio do arquivo
+---

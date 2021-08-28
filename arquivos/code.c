@@ -232,3 +232,72 @@ int main() {
     return 0;
 } */
 
+/* escrevendo com fprintf
+int main() {
+    char nome[20] = "Paul";
+    int i = 31;
+    float a = 1.74;
+    FILE *arq = fopen("arquivo.txt", "w");
+    if(arq == NULL) {
+        printf("ERRO NA ABERTURA");
+        exit(1);
+    }
+    printf("Nome: %s | Idade: %i | Altura: %.2f\n", nome, i, a);
+    fprintf(arq, "Nome: %s | Idade: %i | Altura: %.2f\n", nome, i, a);
+    fclose(arq);
+    return 0;
+}*/
+
+/* lendo com fscanf
+int main() {
+    FILE *arq = fopen("arquivo.txt", "r");
+    if(arq == NULL) {
+        printf("ERRO NA ABERTURA");
+        exit(1);
+    }
+    char texto[20], nome[20];
+    int id;
+    float h;
+    fscanf(arq, "%s %s", texto, nome);
+    printf("%s %s\n", texto, nome);
+    fscanf(arq, "%s %i", texto, &id);
+    printf("%s %i\n", texto, id);
+    fscanf(arq, "%s %f", texto, &h);
+    printf("%s %.2f", texto, h);
+    fclose(arq);
+    return 0;
+} */
+
+/* fseek
+int main() {
+    FILE *f = fopen("arquivo.txt", "wb");
+    if(f == NULL) {
+        printf("ERRO NA ABERTURA");
+        exit(1);
+    }
+    typedef struct {
+        char nome[20], rua[20];
+        int idade;
+    } Cadastro;
+    Cadastro cad[4] = {
+        "Ricardo", "Rua 1", 31,
+        "Carlos", "Rua 2", 28,
+        "Ana", "Rua 3", 45,
+        "Bianca", "Rua 4", 32
+    };
+    fwrite(cad, sizeof(Cadastro), 4, f);
+    fclose(f);
+
+    FILE *arq = fopen("arquivo.txt", "rb");
+    if(arq == NULL) {
+        printf("ERRO NA ABERTURA");
+        exit(1);
+    }
+    Cadastro cad_l;
+    fseek(arq, 2 * sizeof(Cadastro), SEEK_SET); // 2 * sizeof(Cadastro) -> pula duas vees o tamanho indicado
+    fread(&cad_l, sizeof(Cadastro), 1, arq); // lera 1 unidade de dado da quantidade indicada a partir de onde a linha acima deixou o ponteiro
+    printf("%s %s %i", cad_l.nome, cad_l.rua, cad_l.idade);
+    fclose(arq);
+
+    return 0;
+} */
