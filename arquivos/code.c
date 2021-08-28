@@ -129,7 +129,7 @@ int main() {
     }
     fclose(arq);
     return 0;
-}*/
+} */
 
 /* gravando diferentes tipos de dados em um bin
 int main() {
@@ -155,7 +155,7 @@ int main() {
     return 0;
 }*/
 
-/* gravando struct
+/* gravando struct em bin
 int main() {
     typedef struct {
         char nome[30], endereco[30];
@@ -173,4 +173,62 @@ int main() {
     fclose(arq);
 
     return 0;
+} */
+
+/* Leitura de binario com um tipo de dado
+int main() {
+    FILE *arq = fopen("arquivo.txt", "rb");
+    if(arq == NULL) {
+        printf("ERRO NA ABERTURA");
+        exit(1);
+    }
+    int total_lido, v[5];
+    total_lido = fread(v, sizeof(int), 5, arq);
+    if(total_lido != 5) {
+        printf("ERRO NA LEITURA");
+        exit(1);
+    }
+    fclose(arq);
+    printf("%d %d %d %d %d", v[0], v[1], v[2], v[3], v[4]);
+    return 0;
+} */
+
+/* leitura de binario com varios tipos de dados
+int main() {
+    FILE *arq = fopen("dados.txt", "rb");
+    if(arq == NULL) {
+        printf("ERRO NA ABERTURA");
+        exit(1);
+    }
+    char str[20];
+    float x;
+    int v[5];
+    fread(str, sizeof(char), 20, arq);
+    fread(&x, sizeof(float), 1, arq);
+    fread(v, sizeof(int), 5, arq);
+    printf("%s %f %d %d %d %d %d", str, x, v[0], v[1], v[2], v[3], v[4]);
+    fclose(arq);
+    return 0;
 }*/
+
+/* lendo struct em bin
+int main() {
+    typedef struct {
+        char nome[30], endereco[30];
+        int idade;
+    } Cadastro;
+
+    FILE *arq = fopen("struct.txt", "rb");
+    if(arq == NULL) {
+        printf("ERRO NA ABERTURA");
+        exit(1);
+    }
+
+    Cadastro cad;
+    fread(&cad, sizeof(Cadastro), 1, arq);
+    printf("%s %s %i", cad.nome, cad.endereco, cad.idade);
+    fclose(arq);
+
+    return 0;
+} */
+

@@ -49,9 +49,16 @@ A leitura é feita até o caractere \n ou tamanho - 1
 para dados mais complexos que char, é preferivel utilizar arquivos binarios
 ---
 fwite(buffer, bytes, count, arquivo) escreve um bloco de bytes
-- buffer: ponteiro generio para os dados
+- buffer: ponteiro generico para os dados
 - bytes: tamanho, em byte, de cada unidade de dado a ser gravada
 - count: total de unidades de dados que devem ser gravadas
-- fp: ponteiro para o arquivo
+- arquivo: ponteiro para o arquivo
 Retorna o total de unidades de dados gravadas com sucesso
+---
+fread(buffer, bytes, count, arquivo) le um bloco de bytes
+- buffer: ponteiro generico para os dados
+- bytes: tamanho, em byte, de cada unidade de dado a ser lida
+- count: total de unidades de dados que devem ser lidas
+- arquivo: ponteiro para o arquivo
+Retorna o total de unidades de dados lidas com sucesso
 ---
