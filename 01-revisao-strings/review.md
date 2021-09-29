@@ -1,7 +1,7 @@
 # String
 - _string_ é um vetor de tipo ```char```
   - um vetor organizaza as suas posições de maneira contígua na memória
-- sua última posição é indicada pelo __caractere nulo__ ('\0\)
+- sua última posição é indicada pelo __caractere nulo__ ('\0')
   - logo, para uma _string_ de ```n``` bits, são necessárias ```n+1``` posições devido ao caractere nulo
 
 ## Inicializando uma string
