@@ -1,0 +1,25 @@
+- Ponteiro é um tipo especial de variável que armazena endereços de memória
+- Ponteiros não inicializados apontam para um lugar indefinido
+    int *p;
+- um ponteiro pode ter um valor especial NULL, que é o endereço de nenhum lugar
+    int *p = NULL;
+- o ponteiro pode apontar para uma variável que já existe
+    int x= 10;
+    int *p = &x;
+
+- para acessar o valor da variável, é usado "*", permitindo modificar o conteúdo da posição apontada
+- um ponteiro só pode receber o endereço de uma variável de mesmo tipo
+- podemos realizar operações de adição e subtração sobre valor armazenado no ponteiro, sendo que elas dependerão do tipo de dado apontado
+- ponteiros podem ser comparados
+- ponteiros genéricos podem apontar para qualquer tipo de dado, sendo necessária uma conversão para o tipo que deseja trabalhar
+
+- Passagem por referência: o endereço de onde o dado está armazenado na memória é passado para a função, permitindo modificações no valor do parâmetro
+    int n = 10;
+    void soma(int *n) *n = *n + 1;
+
+- Vetor é um conjunto de dados armazenados sequencialmente, sendo que a variável é um ponteiro que aponta para o seu primeiro elemento
+- é possível navegar pelo vetor de forma aritmética
+- também é possível utilizar um vetor de ponteiros
+
+- existem diferentes tipos de apontamentos
+- a quantidade de asteriscos indica o número de níveis de um ponteiros
