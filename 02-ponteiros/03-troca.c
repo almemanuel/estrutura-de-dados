@@ -11,10 +11,8 @@ void troca(int *A, int *B);
 
 int main() {
     int A, B;
-    printf("Informe o valor de A: ");
-    scanf("%i", &A);
-    printf("Informe o valor de B: ");
-    scanf("%i", &B);
+    printf("Informe o valor de A e B: ");
+    scanf("%i %i", &A, &B);
     troca(&A, &B);
     printf("PA = %i, PB = %i", A, B);
 }
