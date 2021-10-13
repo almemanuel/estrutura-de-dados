@@ -1,0 +1,32 @@
+- solicita espaço na memória em tempo de execução
+- a função malloc(nB), presente na biblioteca stdlib.h, permite alocar memória
+    - retorna o número de memória da região alocada
+    - retorna NULL se não for possível alocar
+    - comumente, usa-se a seguinte função:
+- para liberar memória, utiliza-se free(endereco)
+    - a região torna-se disponível novamente
+
+Funções interessantes:
+int *aloca(int n) {
+    int *p = NULL;
+    p = (int *) malloc(n * sizeof(int));
+    if(p == NULL) NULL; /* erro */
+    return p;
+}
+
+void imprime(int *v, int n) {
+    int i;
+    if(v) {
+        for(i = 0; i < n; i++) {
+            printf("%i", *(v + i));
+        }
+        printf("%n");
+    } else {
+        printf("NULL\n");
+    }
+}
+
+void desaloca(int **v) {
+    free(*v);
+    *v = NULL;
+}
