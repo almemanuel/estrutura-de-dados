@@ -15,6 +15,7 @@ int main() {
     scanf("%i %i", &A, &B);
     troca(&A, &B);
     printf("PA = %i, PB = %i", A, B);
+    return 0;
 }
 
 void troca(int *A, int *B) {

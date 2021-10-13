@@ -14,6 +14,7 @@ int main() {
     printf("PA = %i, ",*pa);
     printf("PB = %i, ",*pb);
     printf("PC = %i",*pc);
+    return 0;
 }
 
 void ordene(int *pa, int *pb, int *pc) {
