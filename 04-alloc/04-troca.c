@@ -24,6 +24,8 @@ int main(){
 
     desaloca(a);
     desaloca(b);
+
+    return 0;
 }
 
 
