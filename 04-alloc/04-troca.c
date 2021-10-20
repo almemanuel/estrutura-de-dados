@@ -8,6 +8,7 @@ suposições que julgar necessário.
 
 void quadrado(int *x);
 void fatorial(int *x);
+void desaloca(int *p);
 
 int main(){
     int *a = malloc(sizeof(int));
@@ -21,10 +22,8 @@ int main(){
 
     printf("%i %i\n", *a, *b);
 
-    free(a);
-    a = NULL;
-    free(b);
-    b = NULL;
+    desaloca(a);
+    desaloca(b);
 }
 
 
@@ -38,4 +37,10 @@ void fatorial(int *x) {
     for(i = *x - 1; i > 1; i--) {
         *x *= i;
     }
+}
+
+
+void desaloca(int *p) {
+    free(p);
+    p = NULL;
 }
