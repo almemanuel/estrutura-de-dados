@@ -23,7 +23,7 @@ Tagenda *aloca_agenda(Tagenda *agenda, int dia);
 void aloca_atendimentos(Tagenda *agenda);
 void armazena_cliente(Tagenda *agenda);
 void imprime_cliente(Tagenda *agenda, int dia);
-// 	desaloca_atendimentos( 	);
+void desaloca_atendimentos(Tagenda *agenda, int dia);
 
 int main() {
 	//defini��es de variaveis
@@ -36,8 +36,8 @@ int main() {
 		printf("\n2 - Alocar atendimentos");
 		printf("\n3 - Armazenar cliente");
 		printf("\n4 - Imprimir clientes");
-		printf("\n4 - Desalocar agenda/atendimentos");
-		printf("\n5 - Sair");
+		printf("\n5 - Desalocar agenda/atendimentos");
+		printf("\n6 - Sair");
 		printf("\nInforme opcao:");
 		scanf("%d",&op);
 		switch(op) {
@@ -65,7 +65,16 @@ int main() {
                 imprime_cliente(agenda, dia);
 			} break;
 
-			case 5:
+            case 5:
+			{
+                do {
+                    printf("Informe o dia que deseja cancelar: ");
+                    scanf("%i", &dia);
+                } while(dia < 1);
+                desaloca_atendimentos(agenda, dia);
+			} break;
+
+			case 6:
 			{
                 printf("FIM\n");
                 return 0;
@@ -150,5 +159,21 @@ void imprime_cliente(Tagenda *agenda, int dia) {
     }
     for(int j = 0; j < (agenda + i)->qtde; j++) {
         printf("%i\n%s%s%s", j + 1, (agenda + i)->cliente[j].nome_cli, (agenda + i)->cliente[j].telefone, (agenda + i)->cliente[j].procedimento);
+    }
+}
+
+
+void desaloca_atendimentos(Tagenda *agenda, int dia) {
+    int i;
+    for(i = 0; (agenda + i)->dia == dia || (agenda + i)->dia == 0; i++) {
+        if((agenda + i)->dia == 0) {
+            printf("Dia inexistente\n");
+            return;
+        }
+    }
+    for(int j = (agenda + i)->qtde; j != 0; j--) {
+        free((agenda + i)->cliente[j]);
+        *(agenda + i)->cliente[j] = NULL;
+        (agenda + i)->qtde--;
     }
 }
