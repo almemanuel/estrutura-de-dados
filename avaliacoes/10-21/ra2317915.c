@@ -22,7 +22,7 @@ typedef struct atendimentos {
 Tagenda *aloca_agenda(Tagenda *agenda, int dia);
 void aloca_atendimentos(Tagenda *agenda);
 void armazena_cliente(Tagenda *agenda);
-// 	imprime_cliente( 	);
+void imprime_cliente(Tagenda *agenda, int dia);
 // 	desaloca_atendimentos( 	);
 
 int main() {
@@ -58,7 +58,11 @@ int main() {
 
 			case 4:
 			{
-
+                do {
+                    printf("Informe o dia que deseja visualizar: ");
+                    scanf("%i", &dia);
+                } while(dia < 1);
+                imprime_cliente(agenda, dia);
 			} break;
 
 			case 5:
@@ -124,9 +128,27 @@ void armazena_cliente(Tagenda *agenda) {
                 if(k < j) {
                     printf("\tCliente e procedimento ja cadastrados\n");
                 } else {
+                    do {
+                        printf("Preco: ");
+                        scanf("%f", (agenda + i)->cliente[j].valor_procedimento);
+                    } while((agenda + i)->cliente[j].valor_procedimento) <= 0);
                     break;
                 }
             }
         }
+    }
+}
+
+
+void imprime_cliente(Tagenda *agenda, int dia) {
+    int i;
+    for(i = 0; (agenda + i)->dia == dia || (agenda + i)->dia == 0; i++) {
+        if((agenda + i)->dia == 0) {
+            printf("Dia inexistente\n");
+            return;
+        }
+    }
+    for(int j = 0; j < (agenda + i)->qtde; j++) {
+        printf("%i\n%s%s%s", j + 1, (agenda + i)->cliente[j].nome_cli, (agenda + i)->cliente[j].telefone, (agenda + i)->cliente[j].procedimento);
     }
 }
