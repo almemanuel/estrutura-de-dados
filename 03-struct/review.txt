@@ -1,0 +1,33 @@
+- abstrações de alguma característica
+
+Abstração Computacional
+- conjunto de variáveis declaradas isoladamente podem ser utilizadas para abstrair uma entidade
+- abstração por variáveis isoladas apresentam desavantagens
+    - desorganização do código
+    - procedimentos para ler/escrever sobre todas as variáveis de uma entidade tornam-se mais prolixos
+        - muitos parâmetros ou protótipos
+        - risco de crash
+
+TAD:
+- tipos personalizados
+    - possibilita novas entradas e saídas para procedimentos e funções
+- composta por outras variáveis chamadas campos
+    - podem ser tipos primitivos ou outras TADs
+- é possível utilizar vetor
+
+Operador ".": permite acessar os campos da struct
+Operador "typedef": permite rotular a tipos existentes
+
+Passagem de Parâmetro:
+- Por valor:
+    - exatamente igual aos tipos primitivos
+- Por referência:
+    - exatamente como nos tipos primitivos
+    - manipulação através do operador ->
+Pode ser passado apenas um campo da struct
+
+Ponteiro para struct:
+- "->" pode ser usado para acessar campos de uma struct a partir de seus ponteiros
+
+Struct auto-referenciada
+- campo do tipo ponteiro para ela própria
