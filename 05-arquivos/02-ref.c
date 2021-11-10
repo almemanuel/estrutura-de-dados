@@ -16,25 +16,21 @@ typedef struct {
 bool iguais(Pessoa *a, Pessoa *b);
 
 int main() {
-    Pessoa x[2];
-    for(int i = 0; i < 2; i++) {
-        printf("Informe o nome: ");
-        fgets(x[i].nome, 64, stdin);
-        setbuf(stdin, NULL);
-
-        x[i].idade = 0;
-        do {
-            printf("%sInforme sua idade: ", x[i].nome);
-            scanf("%i", &x[i].idade);
-        } while(x[i].idade < 1);
-        setbuf(stdin, NULL);
+    Pessoa x, y;
+    FILE *fileA = fopen("PessoaA.txt", "r");
+    FILE *fileB = fopen("PessoaB.txt", "r");
+    while(!feof(fileA)) {
+        fscanf(fileA, "%s %i", x.nome, &x.idade);
+        fscanf(fileB, "%s %i", y.nome, &y.idade);
+        if(iguais(&x, &y)) {
+            printf("IGUAIS\n");
+        } else {
+            printf("DIFERENTES\n");
+        }
     }
 
-    if(iguais(&x[0], &x[1])) {
-        printf("IGUAIS\n");
-    } else {
-        printf("DIFERENTES\n");
-    }
+    fclose(fileA);
+    fclose(fileB);
 
     return 0;
 }
