@@ -6,7 +6,7 @@ Vantagens:
 - permitem armazenar muita informação
 - acesso concorrente aos dados
 ---
-A extensão não define o tipo do arquivo, mas sim a maneira como os dados estão roganizados e as operações usadas para processar esse arquivo
+A extensão não define o tipo do arquivo, mas sim a maneira como os dados estão organizados e as operações usadas para processar esse arquivo
 ---
 A linguagem C utiliza um tipo especial de ponteiro na biblioteca stdio, FILE, para trabalhar com arquivos
 É possivel trabalhar com arquivos de texto e arquivos binarios
@@ -23,7 +23,7 @@ Modos:
 - rb: leitura de binario existente;
 - wb: escrita de novo binario ou sobescrita em existente;
 - a: append;
-- ab: appen de binario.
+- ab: append de binario.
 Existem outros modos
 ---
 Sempre apos trabalhar com um arquivo é necessário fechá-lo, usando fclose(variable)
