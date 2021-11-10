@@ -10,40 +10,32 @@ vetor da mesma, caso não seja encontrada a função deve retornar -1. (dica: us
 #include <string.h>
 
 typedef struct {
-    char nome[64];
+    char nome[12];
     int idade;
 } Pessoa;
 
-int buscaLinear(const char nome[64], Pessoa vet[], int tam);
+int buscaLinear(const char nome[12], Pessoa vet[], int tam);
 
 int main() {
+    Pessoa *x = (Pessoa *) malloc(sizeof(Pessoa) * 4);
+    Pessoa *y = (Pessoa *) malloc(sizeof(Pessoa) * 4);
+    FILE *fileA = fopen("PessoaA.txt", "r");
+    FILE *fileB = fopen("PessoaB.txt", "r");
     int tam = 0;
-    do {
-        printf("Informe um tamanho maior que 0: ");
-        scanf("%i", &tam);
-    } while(tam < 1);
-    setbuf(stdin, NULL);
-
-    Pessoa x[tam];
-    for(int i = 0; i < tam; i++) {
-        printf("Informe o nome: ");
-        fgets(x[i].nome, 64, stdin);
-        setbuf(stdin, NULL);
-
-        x[i].idade = 0;
-        do {
-            printf("%sInforme sua idade: ", x[i].nome);
-            scanf("%i", &x[i].idade);
-        } while(x[i].idade < 1);
-        setbuf(stdin, NULL);
+    while(!feof(fileA)) {
+        fscanf(fileA, "%s %i", (x + tam)->nome, &(x + tam)->idade);
+        fscanf(fileB, "%s %i", (y + tam)->nome, &(y + tam)->idade);
+        tam++;
+    }
+    int i = 0;
+    while(i < tam) {
+        printf("Buscando por %s:", (x + i)->nome);
+        printf("\t%i\n", buscaLinear((x+i)->nome, y, tam));
+        i++;
     }
 
-    char nome[64];
-    printf("Informe o nome que deseja buscar: ");
-    fgets(nome, 64, stdin);
-    setbuf(stdin, NULL);
-
-    printf("%i\n", buscaLinear(nome, x, tam));
+    fclose(fileA);
+    fclose(fileB);
 
     return 0;
 }
