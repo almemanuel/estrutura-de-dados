@@ -1,0 +1,169 @@
+LISTAS ENCADEADAS: FUNÇÕES E PROCEDIMENTOS BÁSICOS
+
+typedef struct No {
+    int chave;
+    /* outros campos */
+    struct No *prox; /* struct auto-refrenciada */
+} No;
+
+---
+
+No == NULL teste se o No existente
+
+No *alocaNo(int k) {
+    No *no;
+    no = (No *) malloc(sizeof(No));
+    if(no == NULL) return NULL;
+    no->chave = k;
+    no->prox = NULL;
+    return no;
+}
+
+---
+
+INSERÇÃO NO INÍCIO
+- assume que a lista já foi criada
+- o primeiro nó é apontado pela variável prim
+- o segundo nó é prim->prox
+
+void insereInicio(No **prim, int k) {
+    assert(prim); /*#include <assert.h>*/
+    No *noAux = alocaNo(k);
+    if(noAux == NULL) return;
+    noAux->prox = *prim;
+    *prim = noAux;
+}
+
+---
+
+REMOÇÃO NO INÍCIO
+void removePrimeiro(No **prim) {
+    assert(prim);
+    if(*prim == NULL) return;
+    No *aux = *prim;
+    *prim = (*prim)->prox;
+    free(aux);
+}
+
+---
+
+LISTA COM NÓ CABEÇA
+- sempre terá pelo menos o nó cabeça
+    - o ponteiro para o nó cabeça nunca é nulo
+    - facilita as implementações
+- Nó cabeça
+    - valor chave não corresponde a um dado do usuário
+
+No *criaLista() {
+    No *cabeca = malloc(sizeof(No));
+    if(cabeca == NULL) return NULL;
+    cabeca->chave = -1;
+    cabeca->prox = NULL;
+    return cabeca;
+}
+
+---
+
+LISTA ENCADEADA SIMPLES: ABORDAGEM RECURSIVA
+- L é um ponteiro para um nó do tipo lista;
+- L pode ser nulo (caso base)
+- L != NULL -> *L = No
+
+void insereUltimo(TipoChave k, TipoListaSimples **no) {
+    if(*no == NULL) {
+        *no = (TipoListaSimples *) malloc(sizeof(TipoListaSimples));
+        if(*no == NULL) return;
+        *no->chave = k;
+        *no->prox = NULL;
+    } else {
+        insereUltimo(k, &(*no->prox));
+    }
+}
+
+---
+
+LISTAS ENCADEADAS CIRCULARES
+- o último nó aponta para o primeiro
+
+void insere(TipoListaCircular **p, int info) {
+    assert(p);
+    if(*p == NULL) {
+        *p = (TipoListaCircular *) malloc(sizeof(TipoListaCircular));
+        if(*p != NULL) {
+            (*p)->chave = info;
+            (*p)->prox = *p;
+        }
+    } else {
+        TipoListaCircular *aux = (TipoListaCircular *) malloc(sizeof(TipoListaCircular));
+        if(aux == NULL) return;
+        aux->chave = info;
+        aux->prox = (*p)->prox;
+        (*p)->prox = aux;
+        (*p) = (*p)->prox; // *p = aux
+    }
+}
+
+void remove(TipoListaCircular **p) {
+    assert(p);
+    if(*p == NULL) return;
+    TipoListaCircular *pPrim = (*p)->prox;
+    TipoListaCircular *pPenult = (*p)->prox;
+    if(pPrim->prox != pPrim) {
+        while(pPenult -> prox != *p) {
+            pPenult = pPenult->prox;
+        }
+        free(*p);
+        *p = pPenult;
+        pPenult->prox = pPrim;
+    } else {
+        free(*p);
+        *p = NULL;
+    }
+}
+
+---
+
+LISTAS DUPLAMENTE ENCADEADAS
+- cade nó aponta para o seu antecessor e seu sucessor
+
+typedef struct listaEnc {
+    int info;
+    struct listaEnc* ant;
+    struct listaEnc* prox;
+} ListaE;
+
+ListaE* insere(ListaE* p, int info) {
+    assert(p);
+    ListaE* novo = (ListaE*) malloc(sizeof(ListaE));
+    novo->infor = info;
+    novo->prox = p;
+    novo->ant = NULL;
+
+    if(p != NULL) p->ant = novo;
+    return novo;
+}
+
+ListaE* busca(ListaE *p, int elem) {
+    ListaE *paux;
+    for(paux = p; paux != NULL; paux = paux->prox)
+        if(paux->infor == elem) return paux;
+    return NULL;
+}
+
+---
+
+NÓ E LISTA COM STRUCTS SEPARADAS
+
+typedef struct lista {
+    No *prim;
+    No *ult;
+    int n;
+} TLista;
+
+TLista *criaLista() {
+    TLista *l = malloc(sizeof(TLista));
+    if(l == NULL) return NULL;
+    l->n = 0;
+    l->prim = l->ult = NULL;
+    return l;
+}
